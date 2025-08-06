@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6F8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="17dp"
+        android:gravity="center_horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:paddingBottom="12dp">
+
+            <!-- Page Title -->
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_role"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_centerHorizontal="true"/>
+
+            <!-- Logout Button -->
+            <ImageButton
+                android:id="@+id/logoutButton"
+                android:layout_width="48dp"
+                android:layout_height="54dp"
+                android:layout_toEndOf="@id/titleText"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/logout_button"
+                android:layout_marginStart="60dp"
+                android:src="@drawable/ic_logout"
+                android:background="#F5F6F8" />
+
+        </RelativeLayout>
+
+        <!-- Library Staff Select -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginTop="32dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/staff_icon"
+                android:src="@drawable/ic_staff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/library_staff"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="@string/manage_members_books_n_and_requests"
+                android:textAlignment="center"
+                android:textColor="#455A64"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/staffButton"
+                android:layout_gravity="center"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#111827"
+                android:text="@string/continue_as_staff"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Library Member Select -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_member"
+                android:contentDescription="@string/member_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/library_member"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="@string/browse_and_request_books"
+                android:textColor="#455A64"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/memberButton"
+                android:layout_gravity="center"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_as_member"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#111827"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

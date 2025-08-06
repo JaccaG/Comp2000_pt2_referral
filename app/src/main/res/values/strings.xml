@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Comp200Pt1</string>
+    <string name="sign_in">Sign In</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="please_sign_in_to_continue">Please sign in to continue</string>
+    <string name="library_app">Library App</string>
+    <string name="app_icon">App Icon</string>
+    <string name="select_role">Select Role</string>
+    <string name="staff_icon">Staff Icon</string>
+    <string name="library_staff">Library Staff</string>
+    <string name="manage_members_books_n_and_requests">Manage members, books \n and requests</string>
+    <string name="continue_as_staff">Continue as Staff</string>
+    <string name="member_icon">Member Icon</string>
+    <string name="library_member">Library Member</string>
+    <string name="browse_and_request_books">Browse and request books</string>
+    <string name="continue_as_member">Continue as Member</string>
+    <string name="logout_button">logout_button</string>
 </resources>
