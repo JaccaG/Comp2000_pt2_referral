@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F6F8"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="24dp"
+        android:paddingBottom="12dp">
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_back"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/back_button" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_member_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <!-- Scroll Area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <!-- Form Container -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Full Name Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/full_name_edit_member"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- Full Name Input -->
+            <EditText
+                android:id="@+id/inputFullName"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:autofillHints=""
+                android:background="@drawable/search_background"
+                android:inputType="textPersonName"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+            <!-- Email Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/email_edit_member"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- Email Input -->
+            <EditText
+                android:id="@+id/inputEmail"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:autofillHints=""
+                android:background="@drawable/search_background"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+            <!-- Contact Number Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/contact_number_edit_member"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- Contact Number Input -->
+            <EditText
+                android:id="@+id/inputContact"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:autofillHints=""
+                android:background="@drawable/search_background"
+                android:inputType="phone"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+            <!-- Member Since Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/member_since_edit_member"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- Member Since Input -->
+            <EditText
+                android:id="@+id/inputMemberSince"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:autofillHints=""
+                android:background="@drawable/search_background"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="date"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="@string/save_changes_edit_member"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#0F172A"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#F5F6F8">
 
+    <!-- Page Container -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,6 +12,7 @@
         android:padding="17dp"
         android:gravity="center_horizontal">
 
+        <!-- Header -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,20 +32,19 @@
 
             <!-- Logout Button -->
             <ImageButton
+                android:layout_toEndOf="@id/titleText"
+                android:layout_marginStart="40dp"
                 android:id="@+id/logoutButton"
                 android:layout_width="48dp"
                 android:layout_height="54dp"
-                android:layout_toEndOf="@id/titleText"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:contentDescription="@string/logout_button"
-                android:layout_marginStart="60dp"
                 android:src="@drawable/ic_logout"
-                android:background="#F5F6F8" />
-
+                android:contentDescription="@string/logout_button"
+                android:background="#F5F6F8"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
         </RelativeLayout>
 
-        <!-- Library Staff Select -->
+        <!-- Card: Library Staff -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +53,7 @@
             android:padding="16dp"
             android:layout_marginTop="32dp">
 
+            <!-- Staff Icon -->
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -59,15 +61,18 @@
                 android:contentDescription="@string/staff_icon"
                 android:src="@drawable/ic_staff" />
 
+            <!-- Staff Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/library_staff"
                 android:textStyle="bold"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center" />
 
+            <!-- Staff Subtitle -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,6 +83,7 @@
                 android:textColor="#455A64"
                 android:textSize="18sp" />
 
+            <!-- Staff Button -->
             <Button
                 android:id="@+id/staffButton"
                 android:layout_gravity="center"
@@ -89,7 +95,7 @@
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
-        <!-- Library Member Select -->
+        <!-- Card: Library Member -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,6 +104,7 @@
             android:padding="16dp"
             android:layout_marginTop="10dp">
 
+            <!-- Member Icon -->
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -105,15 +112,18 @@
                 android:src="@drawable/ic_member"
                 android:contentDescription="@string/member_icon" />
 
+            <!-- Member Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/library_member"
-                android:textStyle="bold"
-                android:textSize="24sp"
+                android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:layout_gravity="center" />
+                android:text="@string/library_member"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
+            <!-- Member Subtitle -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -123,6 +133,7 @@
                 android:textColor="#455A64"
                 android:textSize="18sp" />
 
+            <!-- Member Button -->
             <Button
                 android:id="@+id/memberButton"
                 android:layout_gravity="center"

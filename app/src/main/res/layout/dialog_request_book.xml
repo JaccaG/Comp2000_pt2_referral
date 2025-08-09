@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_background">
+
+    <TextView
+        android:id="@+id/requestTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="@string/request_book_title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/requestMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:paddingBottom="16dp"/>
+
+    <Button
+        android:id="@+id/confirmBtn"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:text="@string/request"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#111827"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:text="@string/cancel"
+        android:backgroundTint="#E40000"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"/>
+</LinearLayout>

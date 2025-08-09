@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_background">
+
+    <TextView
+        android:id="@+id/deleteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="@string/delete_member_dialog_title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/deleteMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="@string/delete_member_warning"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:paddingBottom="16dp"/>
+
+    <Button
+        android:id="@+id/confirmDeleteBtn"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#D32F2F"
+        android:text="@string/delete_member_button_confirm"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/cancelDeleteBtn"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:text="@string/cancel_delete_member_button"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        android:textAllCaps="false"/>
+</LinearLayout>
