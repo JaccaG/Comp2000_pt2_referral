@@ -12,63 +12,63 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import com.example.comp200pt1.db.DatabaseWrapper;
 
-// Adapter for the member book list to request books
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 public class MemberBookAdapter extends ArrayAdapter<Book> {
 
+    // Adapter draws each book row for members catalogue screen
     private final Context context;
     private final List<Book> books;
-    private final Set<String> requested = new HashSet<>();
+    private final DatabaseWrapper db;
+    private final String username;
 
-    public MemberBookAdapter(Context context, List<Book> books) {
+    public MemberBookAdapter(Context context, List<Book> books, DatabaseWrapper db, String username) {
         super(context, 0, books);
         this.context = context;
         this.books = books;
+        this.db = db;
+        this.username = username;
     }
 
     @NonNull
     @Override
-
-    // Inflate to custom layout view for list
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.book_item_member, parent, false);
-        }
+        // Layout inflater for custom row
+        if (convertView == null) convertView = LayoutInflater.from(context).inflate(R.layout.book_item_member, parent, false);
 
         Book book = books.get(position);
 
-        // Bind views
         TextView title = convertView.findViewById(R.id.bookTitle);
         TextView author = convertView.findViewById(R.id.bookAuthor);
         TextView statusBadge = convertView.findViewById(R.id.statusBadge);
         Button requestBtn = convertView.findViewById(R.id.requestButton);
 
-        // Populate fields TODO use real data from API instead of sample
         title.setText(book.getTitle());
         author.setText(book.getAuthor());
 
-        // Badge status set based on availability
-        String status = book.getStatus();
-        boolean isAvailable = "Available".equalsIgnoreCase(status);
-        statusBadge.setText(status);
+        // Badge changes based on availability
+        boolean isAvailable = book.isAvailable();
+        statusBadge.setText(book.getStatus());
         statusBadge.setBackgroundResource(isAvailable ? R.drawable.badge_available : R.drawable.badge_checked_out);
 
-        // Button state - disabled if not available or already requested
-        boolean alreadyRequested = requested.contains(book.getTitle());
-        requestBtn.setEnabled(isAvailable && !alreadyRequested);
-        requestBtn.setAlpha(requestBtn.isEnabled() ? 1f : 0.5f);
-        requestBtn.setText(alreadyRequested ? context.getString(R.string.requested) : context.getString(R.string.request));
+        // Only allow request if: book is available AND this user doesn’t already have request for this title.
+        boolean already = db.hasActiveRequest(username, book.getTitle());
+        boolean enabled = isAvailable && !already;
+        requestBtn.setEnabled(enabled);
+        requestBtn.setAlpha(enabled ? 1f : 0.5f);
+        requestBtn.setText(already ? context.getString(R.string.requested) : context.getString(R.string.request));
 
-        // Open confirmation custom dialog
+        // User taps Request, confirm dialog box appears before inserting into SQLite.
         requestBtn.setOnClickListener(v -> showRequestDialog(book, requestBtn));
 
         return convertView;
     }
 
-    // Build custom dialog confirmation for book request
     private void showRequestDialog(Book book, Button requestBtn) {
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_request_book, null, false);
 
@@ -82,20 +82,24 @@ public class MemberBookAdapter extends ArrayAdapter<Book> {
 
         AlertDialog dlg = new AlertDialog.Builder(context).setView(dialogView).create();
 
-        // Confirmation button - remember request and lock request button
         confirm.setOnClickListener(v -> {
-            requested.add(book.getTitle());
+            //Store request dates as yyyy-mm-dd to sort/filter later
+            String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+            // Add request for staff to view later
+            db.addRequest(username, book.getTitle(), today);
+
+            // Reflect state in UI for responsiveness
             requestBtn.setEnabled(false);
             requestBtn.setAlpha(0.5f);
             requestBtn.setText(context.getString(R.string.requested));
             Toast.makeText(context, context.getString(R.string.request_sent_toast), Toast.LENGTH_SHORT).show();
             dlg.dismiss();
         });
-
-        // Cancel button - closes dialog
         cancel.setOnClickListener(v -> dlg.dismiss());
 
-        // Rounds the dialog corners instead of white corners not rounded
+        // Removes sharp white corners from dialog box (ugly)
         dlg.show();
         if (dlg.getWindow() != null) {
             dlg.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));

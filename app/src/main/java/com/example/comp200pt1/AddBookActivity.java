@@ -9,18 +9,26 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.comp200pt1.db.DatabaseWrapper;
+
 public class AddBookActivity extends AppCompatActivity {
 
-    // Inputs on the form
+    // Form inputs
     private EditText inputTitle, inputAuthor, inputIsbn;
     private CheckBox checkboxAvailable;
+
+    // Simple wrapper to communicate with with the local SQLite DB
+    private DatabaseWrapper books;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
-        // Bind views
+        // Get the DB helper ready (so I can insert a book)
+        books = new DatabaseWrapper(this);
+
+        // Wire up the views from XML
         ImageButton back = findViewById(R.id.backButton);
         inputTitle = findViewById(R.id.inputTitle);
         inputAuthor = findViewById(R.id.inputAuthor);
@@ -31,27 +39,34 @@ public class AddBookActivity extends AppCompatActivity {
         // Back to previous screen
         back.setOnClickListener(v -> finish());
 
-        // Add book action
+        // Save button: read fields, validate, then insert into DB
         btnAdd.setOnClickListener(v -> {
+            // Pull the text out of the inputs
             String title = text(inputTitle);
             String author = text(inputAuthor);
             String isbn = text(inputIsbn);
+            boolean available = checkboxAvailable.isChecked(); // true = available
 
-            // Simple input validation
-            if (title.isEmpty() || author.isEmpty() || isbn.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
+            // Basic validation: needs minimum title+author
+            if (title.isEmpty() || author.isEmpty()) {
+                Toast.makeText(this, "Please fill in title and author.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Read availability choice and give feedback
-            String status = checkboxAvailable.isChecked() ? "Available" : "Not available";
-            Toast.makeText(this, "Book added: " + status, Toast.LENGTH_SHORT).show();
+            // Try to insert. Success or failure message depends on outcome
+            long id = books.add(title, author, isbn, available);
 
-            finish();
+            if (id > 0) {
+                // Success path: quick toast then back too the list
+                Toast.makeText(this, "Book added", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                // If failure show this toast
+                Toast.makeText(this, "Failed to add book", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
-    // Helper: get trimmed text safely
     private String text(EditText e) {
         return e.getText() == null ? "" : e.getText().toString().trim();
     }

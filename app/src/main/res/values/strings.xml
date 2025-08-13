@@ -50,7 +50,7 @@
     <string name="full_name_edit_member">Full Name</string>
     <string name="email_edit_member">Email</string>
     <string name="contact_number_edit_member">Contact Number</string>
-    <string name="member_since_edit_member">Member Since</string>
+    <string name="member_end_edit_member">Member End Date</string>
     <string name="save_changes_edit_member">Save Changes</string>
     <string name="edit_member_title">Edit Member</string>
     <string name="delete_member_dialog_title">Delete Member</string>
@@ -136,6 +136,21 @@
     <string name="profile_contact_default">00000 000000</string>
     <string name="member_item_name_ex">John Smith</string>
     <string name="member_item_email_ex">email@example.com</string>
+    <string name="last_name_edit_member">Last Name</string>
+    <string name="first_name_edit_member">First Name</string>
+    <string name="username_edit_member">Username\n</string>
+    <string name="Username_add_member">Username</string>
+    <string name="enter_username_add_member">Enter Username</string>
+    <string name="first_name_add_member">First Name</string>
+    <string name="enter_first_name_add_member">Enter First name</string>
+    <string name="last_name_add_member">Last Name</string>
+    <string name="enter_last_name_add_member">Enter Last Name</string>
+    <string name="member_end_date_add_member">Member End Date</string>
+    <string name="issued_books_title">Issued Books</string>
+    <string name="enter_username_hint">Username</string>
+    <string name="load">Load</string>
+    <string name="issued_books">Issued Books</string>
+    <string name="books_issued_to_a_member">Books issued to a member</string>
 
 
 </resources>

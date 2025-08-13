@@ -174,6 +174,7 @@
                 android:background="@drawable/card_background"
                 android:padding="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"
                 android:gravity="center_vertical">
 
                 <!-- Icon -->
@@ -210,6 +211,57 @@
                 <!-- Action Button -->
                 <Button
                     android:id="@+id/view_book_requests"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_book_requests"
+                    android:backgroundTint="#111827"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- Card 4: Issued Books -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/card_background"
+                android:padding="16dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical">
+
+                <!-- Icon -->
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_clock"
+                    android:contentDescription="@string/requests_icon" />
+
+                <!-- Card Body -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/issued_books"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/books_issued_to_a_member"
+                        android:textColor="#455A64"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Action Button -->
+                <Button
+                    android:id="@+id/view_issued_books"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/view_book_requests"

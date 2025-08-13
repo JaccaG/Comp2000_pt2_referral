@@ -10,7 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import android.widget.Button;
 import android.widget.Toast;
-import android.content.Intent;
+
+import com.example.comp200pt1.db.DatabaseWrapper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,8 +61,19 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         // Edit: open the edit screen and pass the selected book
         editButton.setOnClickListener(v -> {
-            Intent i = new Intent(context, EditBookActivity.class);
-            i.putExtra("book", book);
+            DatabaseWrapper ds = new DatabaseWrapper(context);
+            Long id = ds.findIdByTitleAuthor(book.getTitle(), book.getAuthor());
+
+            android.content.Intent i = new android.content.Intent(context, EditBookActivity.class);
+            if (id != null) {
+                i.putExtra("book_id", id); // pass row id so we can load/update this exact record
+            } else {
+                // fallback fields if no id found (unlikely if list came from DB)
+                i.putExtra("title", book.getTitle());
+                i.putExtra("author", book.getAuthor());
+                i.putExtra("isbn", book.getIsbn());
+                i.putExtra("available", book.isAvailable());
+            }
             context.startActivity(i);
         });
 
@@ -80,7 +92,6 @@ public class BookAdapter extends ArrayAdapter<Book> {
         Button confirm = dialogView.findViewById(R.id.confirmDeleteBtn);
         Button cancel = dialogView.findViewById(R.id.cancelDeleteBtn);
 
-        // Fill dialog text from resources
         title.setText(context.getString(R.string.delete_book_title));
         msg.setText(context.getString(R.string.delete_book_message, book.getTitle()));
         confirm.setText(context.getString(R.string.delete_book_confirm));
@@ -90,18 +101,30 @@ public class BookAdapter extends ArrayAdapter<Book> {
                 .setView(dialogView)
                 .create();
 
-        // Confirm: remove the item and refresh the list
+        // confirm: delete from DB, then update the adapter list
         confirm.setOnClickListener(v -> {
+            DatabaseWrapper ds = new DatabaseWrapper(context);
+
+            // quick lookup by title/author
+            Long id = ds.findIdByTitleAuthor(book.getTitle(), book.getAuthor());
+            if (id != null) {
+                ds.deleteById(id);
+            }
+
             books.remove(book);
             notifyDataSetChanged();
-            Toast.makeText(context, context.getString(R.string.deleted_book_toast, book.getTitle()), Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(
+                    context,
+                    context.getString(R.string.deleted_book_toast, book.getTitle()),
+                    Toast.LENGTH_SHORT
+            ).show();
+
             dlg.dismiss();
         });
 
-        // Cancel: just closes the dialog box
         cancel.setOnClickListener(v -> dlg.dismiss());
 
-        // Match the rounded dialog layout - had nasty white corners (ugly)
         dlg.show();
         if (dlg.getWindow() != null) {
             dlg.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));

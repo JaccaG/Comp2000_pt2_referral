@@ -18,12 +18,12 @@ public class StaffDashboardActivity extends AppCompatActivity {
         Button viewMembersButton = findViewById(R.id.view_library_members);
         Button viewBooksButton = findViewById(R.id.view_book_catalogue_staff);
         Button viewRequestsButton = findViewById(R.id.view_book_requests);
+        Button viewIssuedButton = findViewById(R.id.view_issued_books);
         ImageButton logoutButton = findViewById(R.id.logoutButton);
         ImageButton backButton = findViewById(R.id.backButton);
 
         // Open Members screen
         viewMembersButton.setOnClickListener(v -> {
-            // Replace with actual activity when ready
             Intent intent = new Intent(StaffDashboardActivity.this, MembersActivity.class);
             startActivity(intent);
         });
@@ -36,13 +36,19 @@ public class StaffDashboardActivity extends AppCompatActivity {
 
         // Open Book Requests
         viewRequestsButton.setOnClickListener(v -> {
-            // Replace with actual activity when ready
             Intent intent = new Intent(StaffDashboardActivity.this, BookRequestsActivity.class);
+            startActivity(intent);
+        });
+
+        // Open Issued Books
+        viewIssuedButton.setOnClickListener(v -> {
+            Intent intent = new Intent(StaffDashboardActivity.this, IssuedBooksActivity.class);
             startActivity(intent);
         });
 
         // Logout back to login screen
         logoutButton.setOnClickListener(v -> {
+            com.example.comp200pt1.auth.AuthManager.signOut(this);
             Intent intent = new Intent(StaffDashboardActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

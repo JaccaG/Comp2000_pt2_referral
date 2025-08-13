@@ -26,9 +26,11 @@ public class MemberDashboardActivity extends AppCompatActivity {
         back.setOnClickListener(v -> finish());
 
         // Logout to the login screen
-        Logout.setOnClickListener(v ->
-                startActivity(new Intent(this, MainActivity.class)));
-
+        Logout.setOnClickListener(v -> {
+            com.example.comp200pt1.auth.AuthManager.signOut(this);
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
 
         // Open the member book catalogue
         browseBooks.setOnClickListener(v ->
